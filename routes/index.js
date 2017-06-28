@@ -4,7 +4,7 @@ const router  = express.Router();
 const petControl = require('../controllers/petController');
 
 router.get('/', function(req, res) {
-	res.send('This is from index router');
+	res.render('index', { title: 'Husni Habil' });
 });
 
 router.get('/pet', petControl.getAllPet);
