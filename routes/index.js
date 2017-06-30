@@ -1,10 +1,10 @@
-const express 		= require('express'),
-			router  		= express.Router(),
-			petControl  = require('../controllers/petController');
+const express     = require('express'),
+      router      = express.Router(),
+      petControl  = require('../controllers/petController');
 
 // GET '/' /*home page*/ from url
 router.get('/', (req, res) => {
-	res.render('index', { title: 'Pet API' });
+  res.render('index', { title: 'Pet API' });
 });
 
 // POST '/pet' /*create a pet*/ from url

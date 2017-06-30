@@ -1,11 +1,11 @@
 body {
-	padding: 50px;
-	padding-top: 0;
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 50px;
+  padding-top: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-	color: #00B7FF;
+  color: #00B7FF;
 }
 
 table {
@@ -15,7 +15,7 @@ table {
 }
 
 td, th {
-	border: 1px solid #dddddd;
-	text-align: left;
-	padding: 8px;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }

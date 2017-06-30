@@ -2,54 +2,54 @@
 <html>
 
 
-	<head>
-		<title>This is Your Pets!</title>
-		<link rel="stylesheet" href="/stylesheets/style.css">
-	</head>
+  <head>
+    <title>This is Your Pets!</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
 
 
-	<body>
-	
-		<h2>Pet List</h2>
-		<table style="width:300px; height:100px" >
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Age</th>
-				<th>Photo</th>
-				<th>Update Photo</th>
-			</tr>
-			<% pets.forEach(pet => { %>	
-				<tr style="text-align: center;">
-					<td> <%= pet.Id%> </td>
-					<td> <%= pet.Name%> </td>
-					<td> <%= pet.Age%> </td>
-					<td> <img src=<%= pet.Photo%> style="width: 100px; height: 70px" > </td>
-					<td>
-						<form action="/pet/<%= pet.Id%>/uploadImage" method="post" enctype="multipart/form-data">
-							<input type="file" name="file">
-							<input type="submit">
-						</form>
-					</td>
-				</tr>
-			<% }) %>
-		</table>
-		<br><br>
+  <body>
+  
+    <h2>Pet List</h2>
+    <table style="width:300px; height:100px" >
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Photo</th>
+        <th>Update Photo</th>
+      </tr>
+      <% pets.forEach(pet => { %> 
+        <tr style="text-align: center;">
+          <td> <%= pet.Id%> </td>
+          <td> <%= pet.Name%> </td>
+          <td> <%= pet.Age%> </td>
+          <td> <img src=<%= pet.Photo%> style="width: 100px; height: 70px" > </td>
+          <td>
+            <form action="/pet/<%= pet.Id%>/uploadImage" method="post" enctype="multipart/form-data">
+              <input type="file" name="file">
+              <input type="submit">
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+    <br><br>
 
-		<h2>Add pet</h2>
-		<form action="/pet" method="post">
-			Id:<br>
-			<input type="text" name="Id"><br>
-			Name:<br>
-			<input type="text" name="Name"><br>
-			Age:<br>
-			<input type="text" name="Age"><br>
-			URL Photo:<br>
-			<input type="text" name="Photo"><br>
-			<input type="submit" name="Submit">
-		</form>
+    <h2>Add pet</h2>
+    <form action="/pet" method="post">
+      Id:<br>
+      <input type="text" name="Id"><br>
+      Name:<br>
+      <input type="text" name="Name"><br>
+      Age:<br>
+      <input type="text" name="Age"><br>
+      URL Photo:<br>
+      <input type="text" name="Photo"><br>
+      <input type="submit" name="Submit">
+    </form>
 
-	</body>
+  </body>
 
 
 </html>
