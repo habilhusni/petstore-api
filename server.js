@@ -5,7 +5,7 @@ const express     = require('express'),
 			mongoose    = require('mongoose'),
 			path        = require('path'),
 			index       = require('./routes/index'),
-			app 				= express();
+			app					= express();
 
 // mongodb connection
 mongoose.connect('mongodb://localhost/pet');
@@ -26,7 +26,7 @@ app.use('/', index);
 
 // connecting to PORT
 app.listen(process.env.PORT || 3000, function() {
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
 

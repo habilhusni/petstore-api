@@ -116,17 +116,17 @@ let getAllPet = (req, res) => {
 		updatePhoto = (req, res) => {
 
 			var upload = new Upload({
-		    dest: 'public/photos',
-		    maxFileSize: 1000 * 1024,
-		    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-		  });
+				dest: 'public/photos',
+				maxFileSize: 1000 * 1024,
+				acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+			});
 		 
-		  upload.on('end', (fields, files) => {
-		    var path 			= files.file.path,
-		    	  pathPhoto = path.replace('public/','');
+			upload.on('end', (fields, files) => {
+				var path 			= files.file.path,
+						pathPhoto = path.replace('public/','');
 
-		    Pet
-		    .findOne({Id: req.params.pet_id})
+				Pet
+				.findOne({Id: req.params.pet_id})
 				.exec((err, pet) => {
 						if(err) {
 							res.status(400).send(err);
@@ -145,13 +145,13 @@ let getAllPet = (req, res) => {
 						}
 					});
 
-		  });
+			});
 		 
-		  upload.on('error', err => {
-		    res.status(400).send(err);
-		  });
+			upload.on('error', err => {
+				res.status(400).send(err);
+			});
 		 
-		  upload.parse(req);
+			upload.parse(req);
 
 		};
 
