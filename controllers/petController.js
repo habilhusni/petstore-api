@@ -30,7 +30,7 @@ let getAllPet = (req, res) => {
 				if(err) {
 					res.status(400).send(err);	
 				}else if(!pet) {
-					res.status(400).send('empty');
+					res.status(400).send('cannot find pet_id');
 				}else {
 					res.send(pet);
 				}
