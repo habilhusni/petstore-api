@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html>
-
-
   <head>
     <title>This is Your Pets!</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
-
-
   <body>
-  
     <h2>Pet List</h2>
-    <table style="width:300px; height:100px" >
+    <table>
       <tr>
         <th>Id</th>
         <th>Name</th>
@@ -20,11 +15,11 @@
         <th>Update Photo</th>
       </tr>
       <% pets.forEach(pet => { %> 
-        <tr style="text-align: center;">
+        <tr>
           <td> <%= pet.Id%> </td>
           <td> <%= pet.Name%> </td>
           <td> <%= pet.Age%> </td>
-          <td> <img src=<%= pet.Photo%> style="width: 100px; height: 70px" > </td>
+          <td> <img src=<%= pet.Photo%> > </td>
           <td>
             <form action="/pet/<%= pet.Id%>/uploadImage" method="post" enctype="multipart/form-data">
               <input type="file" name="file">
@@ -35,7 +30,6 @@
       <% }) %>
     </table>
     <br><br>
-
     <h2>Add pet</h2>
     <form action="/pet" method="post">
       Id:<br>
@@ -48,8 +42,5 @@
       <input type="text" name="Photo"><br>
       <input type="submit" name="Submit">
     </form>
-
   </body>
-
-
 </html>

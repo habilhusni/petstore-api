@@ -11,11 +11,21 @@ a {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 300px;
+  height: 100px;
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+}
+
+tr {
+  text-align: center;
+}
+
+img {
+  width: 100px;
+  height: 70px;
 }
