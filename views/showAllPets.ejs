@@ -2,8 +2,9 @@
 <html>
   <head>
     <title>This is Your Pets!</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
+
   <body>
     <h2>Pet List</h2>
     <table>
@@ -14,33 +15,48 @@
         <th>Photo</th>
         <th>Update Photo</th>
       </tr>
-      <% pets.forEach(pet => { %> 
-        <tr>
-          <td> <%= pet.Id%> </td>
-          <td> <%= pet.Name%> </td>
-          <td> <%= pet.Age%> </td>
-          <td> <img src=<%= pet.Photo%> > </td>
-          <td>
-            <form action="/pet/<%= pet.Id%>/uploadImage" method="post" enctype="multipart/form-data">
-              <input type="file" name="file">
-              <input type="submit">
-            </form>
-          </td>
-        </tr>
+      <% pets.forEach(pet => { %>
+      <tr>
+        <td>
+          <%= pet.Id%>
+        </td>
+        <td>
+          <%= pet.Name%>
+        </td>
+        <td>
+          <%= pet.Age%>
+        </td>
+        <td><img src=<%=pet.Photo%> ></td>
+        <td>
+          <form
+            action="/pet/<%= pet.Id%>/uploadImage"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input type="file" name="file" />
+            <input type="submit" />
+          </form>
+        </td>
+      </tr>
       <% }) %>
     </table>
-    <br><br>
+
+    <br /><br />
     <h2>Add pet</h2>
     <form action="/pet" method="post">
-      Id:<br>
-      <input type="text" name="Id"><br>
-      Name:<br>
-      <input type="text" name="Name"><br>
-      Age:<br>
-      <input type="text" name="Age"><br>
-      URL Photo:<br>
-      <input type="text" name="Photo"><br>
-      <input type="submit" name="Submit">
+      Id:<br />
+      <input type="text" name="Id" /><br />
+      Name:<br />
+      <input type="text" name="Name" /><br />
+      Age:<br />
+      <input type="text" name="Age" /><br />
+      URL Photo:<br />
+      <input type="text" name="Photo" /><br />
+      <input type="submit" name="Submit" />
+      <form action="#" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" />
+      </form>
     </form>
   </body>
 </html>
