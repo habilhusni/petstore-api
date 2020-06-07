@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express     = require('express'),
       cors        = require('cors'),
       bodyParser  = require('body-parser'),
@@ -8,7 +9,8 @@ const express     = require('express'),
       app         = express();
 
 // mongodb connection
-mongoose.connect('mongodb://localhost/pet');
+// mongoose.connect('mongodb://localhost/pet');
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_USER_PASS}@ds021731.mlab.com:21731/pet-store`)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

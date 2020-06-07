@@ -1,6 +1,4 @@
-const express     = require('express'),
-      router      = express.Router(),
-      Pet         = require('../models/pet'),
+const Pet         = require('../models/pet'),
       Upload      = require('upload-file');
 
 /*
@@ -12,8 +10,8 @@ let getAllPet = (req, res) => {
         if(err) {
           res.status(400).send(err);  
         }else {
-          // res.send(pets);
-          res.render('showAllPets', {pets: pets});          
+          res.send(pets);
+          // res.render('showAllPets', {pets: pets});
         }
       });
 
@@ -55,8 +53,8 @@ let getAllPet = (req, res) => {
         if(err) {
           res.status(400).send(err);
         }else {
-          // res.send(pet);
-          res.redirect('/pet');
+          res.send(pet);
+          // res.redirect('/pet');
         }
       });
 
@@ -120,7 +118,7 @@ let getAllPet = (req, res) => {
         maxFileSize: 1000 * 1024,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
       });
-     
+
       upload.on('end', (fields, files) => {
         var path      = files.file.path,
             pathPhoto = path.replace('public/','');
@@ -146,11 +144,11 @@ let getAllPet = (req, res) => {
           });
 
       });
-     
+
       upload.on('error', err => {
         res.status(400).send(err);
       });
-     
+
       upload.parse(req);
 
     };
