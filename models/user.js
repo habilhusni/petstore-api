@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
   Schema = mongoose.Schema,
   userSchema = new Schema({
-    Id: { type: Number, required: true, unique: true },
+    Id: { type: String, required: true, unique: true },
     Name: { type: String, required: true },
     Email: { type: String },
     is_Admin: { type: Boolean },
