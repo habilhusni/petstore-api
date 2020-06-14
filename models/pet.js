@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
   Schema = mongoose.Schema,
   petSchema = new Schema({
-    Id: { type: Schema.Types.ObjectId, required: true },
+    Id: { type: Schema.Types.ObjectId },
     Name: { type: String, required: true },
     Age: { type: Number, required: true },
     Photo: { type: String, required: true },
