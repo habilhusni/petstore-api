@@ -1,12 +1,13 @@
 require("dotenv").config();
 const User = require("../models/user"),
-      jwt = require("jsonwebtoken"),
-      password = require("password-hash");
+  jwt = require("jsonwebtoken"),
+  password = require("password-hash"),
+  ValidateEmail = require("../utils/helper");
 
 /**
  * Login Controller
  */
-let login = function(req, res) {
+let login = function (req, res) {
   User.findOne({ Name: req.body.Name }).exec((err, user) => {
     if (err) {
       res.status(400).send(err);
@@ -35,8 +36,8 @@ let signUp = (req, res) => {
   if (!req.body.Password)
     res.send({
       errors: {
-        password: "value is undefined"
-      }
+        password: "value is undefined",
+      },
     });
   // Creating hash
   let hashPassword = password.generate(req.body.Password);
@@ -46,15 +47,18 @@ let signUp = (req, res) => {
     Name: req.body.Name,
     Email: req.body.Email,
     is_Admin: req.body.is_Admin,
-    Password: hashPassword
+    Password: hashPassword,
   });
 
   user.save((err, user) => {
     if (err) {
       res.status(400).send(err);
     } else {
+      if (!ValidateEmail(user.Email)) {
+        res.status(403).send("Invalid email address");
+      }
       if (user.Password == "" || user.Name == "") {
-        res.send("Please insert username and password!");
+        res.status(403).send("Please insert username and password!");
       } else {
         res.send(user);
       }
@@ -66,4 +70,4 @@ let signUp = (req, res) => {
 module.exports = {
   login,
   signUp,
-}
+};
