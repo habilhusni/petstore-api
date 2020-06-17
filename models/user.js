@@ -3,7 +3,7 @@ const mongoose = require("mongoose"),
   userSchema = new Schema({
     Id: { type: String, required: true, unique: true },
     Name: { type: String, required: true, unique: true },
-    Email: { type: String, unique: true },
+    Email: { type: String, required: true, unique: true },
     is_Admin: { type: Boolean },
     Password: { type: String, required: true },
   }),
