@@ -1,48 +1,44 @@
-const Category = require("../models/category");
+const Category = require("../models/category"),
+  helper = require("../utils/helper");
 
 /*
  * Show All Category
  */
 let getAllCategory = (req, res) => {
-    Category.find((err, categories) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.send(categories);
-      }
-    });
+    Category.find()
+      .populate("Brands", "-_id -__v -Products -Categories")
+      .populate("Products", "-_id -__v -Brands -Categories")
+      .exec((err, categories) => {
+        if (err) {
+          res.status(400).send(err);
+        } else {
+          res.send(categories);
+        }
+      });
   },
   /*
    * Show One Category
    */
   getOneCategory = (req, res) => {
-    Category.findOne({ Name: req.params.cat_name }).exec((err, cat) => {
-      if (err) {
-        res.status(400).send(err);
-      } else if (!cat) {
-        res.status(400).send("cannot find cat_name");
-      } else {
-        res.send(cat);
-      }
-    });
-  },
-  /*
-   * Populate Brands
-   */
-  populateBrands = (id) => {
-    Category.findById(id).populate("Brands", "-_id -__v -Products -Categories");
-  },
-  /*
-   * Populate Products
-   */
-  populateProducts = (id) => {
-    Category.findById(id).populate("Products", "-_id -__v -Categories -Brands");
+    Category.findOne({ Id: req.params.cat_id })
+      .populate("Brands", "-_id -__v -Products -Categories")
+      .populate("Products", "-_id -__v -Brands -Categories")
+      .exec((err, cat) => {
+        if (err) {
+          res.status(400).send(err);
+        } else if (!cat) {
+          res.status(400).send("cannot find cat_id");
+        } else {
+          res.send(cat);
+        }
+      });
   },
   /*
    * Create a Category
    */
   createCategory = (req, res) => {
     let category = new Category({
+      Id: helper.generateUniqueString("catID"),
       Name: req.body.Name,
       Products: req.body.Products,
       Brands: req.body.Brands,
@@ -52,14 +48,7 @@ let getAllCategory = (req, res) => {
       if (err) {
         res.status(400).send(err);
       } else {
-        if (cat.Brands.length > 0) {
-          await populateBrands(cat._id);
-        }
-        if (cat.Products.length > 0) {
-          await populateProducts(cat_id);
-        }
-
-        res.send(cat);
+        res.send(cat.Id);
       }
     });
   },
@@ -67,25 +56,19 @@ let getAllCategory = (req, res) => {
    * Update a Category
    */
   updateCategory = (req, res) => {
-    Category.findOne({ Name: req.params.cat_name }).exec((err, category) => {
+    Category.findOne({ Id: req.params.cat_id }).exec((err, category) => {
       if (err) {
         res.status(400).send(err);
       } else if (!category) {
-        res.status(400).send("cannot find cat_name");
+        res.status(400).send("cannot find cat_id");
       } else {
-        category.Name = req.body.Name;
+        (category.Id = req.body.Id), (category.Name = req.body.Name);
         category.Brands = req.body.Brands;
         category.Products = req.body.Products;
-        category.save(async (err, cat) => {
+        category.save((err, cat) => {
           if (err) {
             res.status(400).send(err);
           } else {
-            if (cat.Categories.length > 0) {
-              await populateCategories(cat._id);
-            }
-            if (cat.Products.length > 0) {
-              await populateProducts(cat._id);
-            }
             res.send(cat);
           }
         });
@@ -96,12 +79,12 @@ let getAllCategory = (req, res) => {
    * Delete a Category
    */
   deleteCategory = (req, res) => {
-    Category.findOneAndRemove({ Name: req.params.cat_name }).exec(
+    Category.findOneAndRemove({ Id: req.params.cat_id }).exec(
       (err, category) => {
         if (err) {
           res.status(400).send(err);
         } else if (!category) {
-          res.status(400).send("cannot find cat_name");
+          res.status(400).send("cannot find cat_id");
         } else {
           res.send(category);
         }

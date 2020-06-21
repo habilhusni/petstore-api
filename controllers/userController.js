@@ -2,7 +2,7 @@ require("dotenv").config();
 const User = require("../models/user"),
   jwt = require("jsonwebtoken"),
   password = require("password-hash"),
-  ValidateEmail = require("../utils/helper");
+  helper = require("../utils/helper");
 
 /**
  * Login Controller
@@ -43,7 +43,7 @@ let signUp = (req, res) => {
   let hashPassword = password.generate(req.body.Password);
 
   let user = new User({
-    Id: req.body.Id,
+    Id: helper.generateUniqueString("usrid"),
     Name: req.body.Name,
     Email: req.body.Email,
     is_Admin: req.body.is_Admin,
@@ -54,13 +54,13 @@ let signUp = (req, res) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      if (!ValidateEmail(user.Email)) {
+      if (!helper.ValidateEmail(user.Email)) {
         res.status(403).send("Invalid email address");
       }
       if (user.Password == "" || user.Name == "") {
         res.status(403).send("Please insert username and password!");
       } else {
-        res.send(user);
+        res.send(user.Id);
       }
       // res.redirect("/user");
     }

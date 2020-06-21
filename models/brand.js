@@ -1,6 +1,7 @@
 const mongoose = require("mongoose"),
   Schema = mongoose.Schema,
   brandSchema = new Schema({
+    Id: { type: String, required: true, unique: true },
     Name: { type: String, unique: true },
     Products: [
       {

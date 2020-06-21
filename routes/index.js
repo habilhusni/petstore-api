@@ -4,7 +4,8 @@ const express = require("express"),
   userControl = require("../controllers/userController"),
   auth = require("../autentikasi/auth"),
   brandControl = require("../controllers/brandController"),
-  categoryControl = require("../controllers/categoryController");
+  categoryControl = require("../controllers/categoryController"),
+  productControl = require("../controllers/productController");
 
 // GET '/' /*home page*/ from url
 router.get("/", (req, res) => {
@@ -41,14 +42,14 @@ router.post("/brand", auth.loginAuth, brandControl.createBrand);
 // GET '/brand' /*get all brand*/ from url
 router.get("/brand", auth.loginAuth, brandControl.getAllBrand);
 
-// GET '/brand/:br_name' /*show one category*/ from url
-router.get("/brand/:br_name", auth.loginAuth, brandControl.getOneBrand);
+// GET '/brand/:br_id' /*show one category*/ from url
+router.get("/brand/:br_id", auth.loginAuth, brandControl.getOneBrand);
 
-// PUT '/brand/:br_name' /*update a brand*/ from url
-router.put("/brand/:br_name", auth.loginAuth, brandControl.updateBrand);
+// PUT '/brand/:br_id' /*update a brand*/ from url
+router.put("/brand/:br_id", auth.loginAuth, brandControl.updateBrand);
 
-// DELETE '/brand/:br_name' /*delete a brand*/ from url
-router.put("/brand/:br_name", auth.loginAuth, brandControl.deleteBrand);
+// DELETE '/brand/:br_id' /*delete a brand*/ from url
+router.delete("/brand/:br_id", auth.loginAuth, brandControl.deleteBrand);
 
 // POST '/category' /*create category*/ from url
 router.post("/category", auth.loginAuth, categoryControl.createCategory);
@@ -56,25 +57,36 @@ router.post("/category", auth.loginAuth, categoryControl.createCategory);
 // GET '/category' /*get all category*/ from url
 router.get("/category", auth.loginAuth, categoryControl.getAllCategory);
 
-// GET '/category/:cat_name' /*show one category*/ from url
-router.get(
-  "/category/:cat_name",
-  auth.loginAuth,
-  categoryControl.getOneCategory
-);
+// GET '/category/:cat_id' /*show one category*/ from url
+router.get("/category/:cat_id", auth.loginAuth, categoryControl.getOneCategory);
 
-// PUT '/category/:cat_name' /*update a category*/ from url
-router.put(
-  "/category/:cat_name",
-  auth.loginAuth,
-  categoryControl.updateCategory
-);
+// PUT '/category/:cat_id' /*update a category*/ from url
+router.put("/category/:cat_id", auth.loginAuth, categoryControl.updateCategory);
 
-// DELETE '/category/:cat_name' /*delete a category*/ from url
-router.put(
-  "/category/:cat_name",
+// DELETE '/category/:cat_id' /*delete a category*/ from url
+router.delete(
+  "/category/:cat_id",
   auth.loginAuth,
   categoryControl.deleteCategory
+);
+
+// POST '/product' /*create product*/ from url
+router.post("/product", auth.loginAuth, productControl.createProduct);
+
+// GET '/product' /*get all product*/ from url
+router.get("/product", auth.loginAuth, productControl.getAllProduct);
+
+// GET '/product/:prod_id' /*show one product*/ from url
+router.get("/product/:prod_id", auth.loginAuth, productControl.getOneProduct);
+
+// PUT '/product/:prod_id' /*update a product*/ from url
+router.put("/product/:prod_id", auth.loginAuth, productControl.updateProduct);
+
+// DELETE '/product/:prod_id' /*delete a product*/ from url
+router.delete(
+  "/product/:prod_id",
+  auth.loginAuth,
+  productControl.deleteProduct
 );
 
 module.exports = router;
