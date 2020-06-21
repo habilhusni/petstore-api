@@ -44,6 +44,12 @@ router.get("/brand", auth.loginAuth, brandControl.getAllBrand);
 // GET '/brand/:br_name' /*show one category*/ from url
 router.get("/brand/:br_name", auth.loginAuth, brandControl.getOneBrand);
 
+// PUT '/brand/:br_name' /*update a brand*/ from url
+router.put("/brand/:br_name", auth.loginAuth, brandControl.updateBrand);
+
+// DELETE '/brand/:br_name' /*delete a brand*/ from url
+router.put("/brand/:br_name", auth.loginAuth, brandControl.deleteBrand);
+
 // POST '/category' /*create category*/ from url
 router.post("/category", auth.loginAuth, categoryControl.createCategory);
 
@@ -55,6 +61,20 @@ router.get(
   "/category/:cat_name",
   auth.loginAuth,
   categoryControl.getOneCategory
+);
+
+// PUT '/category/:cat_name' /*update a category*/ from url
+router.put(
+  "/category/:cat_name",
+  auth.loginAuth,
+  categoryControl.updateCategory
+);
+
+// DELETE '/category/:cat_name' /*delete a category*/ from url
+router.put(
+  "/category/:cat_name",
+  auth.loginAuth,
+  categoryControl.deleteCategory
 );
 
 module.exports = router;

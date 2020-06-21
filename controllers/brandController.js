@@ -4,13 +4,23 @@ const Brand = require("../models/brand");
  * Show All Brand
  */
 let getAllBrand = (req, res) => {
-    Brand.find((err, brands) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.send(brands);
-      }
-    });
+    // Brand.find((err, brands) => {
+    //   if (err) {
+    //     res.status(400).send(err);
+    //   } else {
+    //     res.send(brands);
+    //   }
+    // });
+    Brand.find()
+      .populate("Categories", "-_id -__v -Products -Brands")
+      .populate("Products", "-_id -__v -Categories -Brands")
+      .exec((err, brands) => {
+        if (err) {
+          res.status(400).send(err);
+        } else {
+          res.send(brands);
+        }
+      });
   },
   /*
    * Show One Brand
