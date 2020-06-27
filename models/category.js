@@ -3,6 +3,7 @@ const mongoose = require("mongoose"),
   catagorySchema = new Schema({
     Id: { type: String, required: true, unique: true },
     Name: { type: String, unique: true },
+    Photos: [{ type: String }],
     Products: [
       {
         type: mongoose.Schema.Types.ObjectId,

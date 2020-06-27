@@ -40,6 +40,7 @@ let getAllBrand = (req, res) => {
     let brand = new Brand({
       Id: helper.generateUniqueString("brdId"),
       Name: req.body.Name,
+      Photos: req.body.Photos,
       Products: req.body.Products,
       Categories: req.body.Categories,
     });
@@ -62,7 +63,9 @@ let getAllBrand = (req, res) => {
       } else if (!brand) {
         res.status(400).send("cannot find br_id");
       } else {
-        (brand.Id = req.body.Id), (brand.Name = req.body.Name);
+        brand.Id = req.body.Id;
+        brand.Name = req.body.Name;
+        brand.Photos = req.body.Photos;
         brand.Categories = req.body.Categories;
         brand.Products = req.body.Products;
         brand.save(async (err, br) => {

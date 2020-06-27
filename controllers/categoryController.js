@@ -40,6 +40,7 @@ let getAllCategory = (req, res) => {
     let category = new Category({
       Id: helper.generateUniqueString("catID"),
       Name: req.body.Name,
+      Photos: req.body.Photos,
       Products: req.body.Products,
       Brands: req.body.Brands,
     });
@@ -62,7 +63,9 @@ let getAllCategory = (req, res) => {
       } else if (!category) {
         res.status(400).send("cannot find cat_id");
       } else {
-        (category.Id = req.body.Id), (category.Name = req.body.Name);
+        category.Id = req.body.Id;
+        category.Name = req.body.Name;
+        category.Photos = req.body.Photos;
         category.Brands = req.body.Brands;
         category.Products = req.body.Products;
         category.save((err, cat) => {
