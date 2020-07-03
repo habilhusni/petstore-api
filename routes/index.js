@@ -22,10 +22,10 @@ router.post("/login", userControl.login);
 router.post("/pet", auth.loginAuth, petControl.createPet);
 
 // GET '/pet' /*show all pets*/ from url
-router.get("/pet", auth.loginAuth, petControl.getAllPet);
+router.get("/pet", petControl.getAllPet);
 
 // GET '/pet/:pet_id' /*show one pet*/ from url
-router.get("/pet/:pet_id", auth.loginAuth, petControl.getOnePet);
+router.get("/pet/:pet_id", petControl.getOnePet);
 
 // PUT '/pet/:pet_id' /*update a pet*/ from url
 router.put("/pet/:pet_id", auth.loginAuth, petControl.updatePet);
@@ -40,10 +40,10 @@ router.post("/pet/:pet_id/uploadImage", auth.loginAuth, petControl.updatePhoto);
 router.post("/brand", auth.loginAuth, brandControl.createBrand);
 
 // GET '/brand' /*get all brand*/ from url
-router.get("/brand", auth.loginAuth, brandControl.getAllBrand);
+router.get("/brand", brandControl.getAllBrand);
 
 // GET '/brand/:br_id' /*show one category*/ from url
-router.get("/brand/:br_id", auth.loginAuth, brandControl.getOneBrand);
+router.get("/brand/:br_id", brandControl.getOneBrand);
 
 // PUT '/brand/:br_id' /*update a brand*/ from url
 router.put("/brand/:br_id", auth.loginAuth, brandControl.updateBrand);
@@ -55,10 +55,10 @@ router.delete("/brand/:br_id", auth.loginAuth, brandControl.deleteBrand);
 router.post("/category", auth.loginAuth, categoryControl.createCategory);
 
 // GET '/category' /*get all category*/ from url
-router.get("/category", auth.loginAuth, categoryControl.getAllCategory);
+router.get("/category", categoryControl.getAllCategory);
 
 // GET '/category/:cat_id' /*show one category*/ from url
-router.get("/category/:cat_id", auth.loginAuth, categoryControl.getOneCategory);
+router.get("/category/:cat_id", categoryControl.getOneCategory);
 
 // PUT '/category/:cat_id' /*update a category*/ from url
 router.put("/category/:cat_id", auth.loginAuth, categoryControl.updateCategory);
@@ -74,10 +74,10 @@ router.delete(
 router.post("/product", auth.loginAuth, productControl.createProduct);
 
 // GET '/product' /*get all product*/ from url
-router.get("/product", auth.loginAuth, productControl.getAllProduct);
+router.get("/product", productControl.getAllProduct);
 
 // GET '/product/:prod_id' /*show one product*/ from url
-router.get("/product/:prod_id", auth.loginAuth, productControl.getOneProduct);
+router.get("/product/:prod_id", productControl.getOneProduct);
 
 // PUT '/product/:prod_id' /*update a product*/ from url
 router.put("/product/:prod_id", auth.loginAuth, productControl.updateProduct);
