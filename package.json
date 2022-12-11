@@ -25,7 +25,7 @@
     "deep-extend": ">=0.5.1",
     "dotenv": "^8.2.0",
     "ejs": "^2.5.6",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "forwarded": ">=0.1.2",
     "fresh": ">=0.5.2",
     "jsonwebtoken": "^8.5.1",
